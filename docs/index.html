@@ -68,6 +68,53 @@
   </div>
 </section>
 
+<section id="map" class="section-map">
+  <div class="container">
+    <div class="section-map__title">
+      <h2 class="section-map__h"><span>Nationwide</span> <span>Fact-Checks</span></h2>
+      <p class="section-map__sub">Explore activity by state</p>
+    </div>
+    <p class="section-map__intro">Hover a state for its fact-check summary. Click to see every DOJ claim about that state, verified against primary sources. States are colored by the share of claims that reduce to one of the four structural templates.</p>
+    <div class="rei-map" data-map>
+      <div>
+        <div class="rei-map__frame" data-map-frame>
+          <div class="rei-map__placeholder">Loading map&hellip;</div>
+        </div>
+        <div class="rei-map__insets" role="list" aria-label="Alaska, Hawaii, and District of Columbia">
+          <button type="button" class="rei-map__inset" data-postal="AK" role="listitem"><span class="rei-map__inset-abbr">AK</span><span class="rei-map__inset-name">Alaska</span></button>
+          <button type="button" class="rei-map__inset" data-postal="HI" role="listitem"><span class="rei-map__inset-abbr">HI</span><span class="rei-map__inset-name">Hawaii</span></button>
+          <button type="button" class="rei-map__inset" data-postal="DC" role="listitem"><span class="rei-map__inset-abbr">DC</span><span class="rei-map__inset-name">D.C.</span></button>
+        </div>
+      </div>
+      <aside class="rei-map__panel" data-map-panel aria-live="polite">
+        <div class="rei-map__panel-empty" data-map-empty>
+          <div class="rei-map__panel-hint">Hover over a state to view its fact-check.<br>Click a state to open its full page.</div>
+          <div class="rei-map__legend">
+            <div class="rei-map__legend-title">Templated share</div>
+            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--low"></span>0&ndash;33% templated</div>
+            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--mid"></span>34&ndash;66% templated</div>
+            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--high"></span>67&ndash;100% templated</div>
+            <div class="rei-map__legend-note">&ldquo;Templated&rdquo; = matches one of the four DOJ boilerplate items catalogued in <a href="/#reduction">the 243&nbsp;&rarr;&nbsp;4 reduction</a>.</div>
+          </div>
+        </div>
+        <div class="rei-map__panel-state" data-map-state hidden>
+          <div class="rei-map__panel-header">
+            <h3 data-map-name></h3>
+            <span class="rei-map__badge" data-map-abbr></span>
+          </div>
+          <div class="rei-map__panel-stats">
+            <div><span class="rei-map__stat-num" data-map-n></span><span class="rei-map__stat-lbl">claims on DOJ dashboard</span></div>
+            <div><span class="rei-map__stat-num" data-map-nt></span><span class="rei-map__stat-lbl">match one of 4 templates <span data-map-pt></span></span></div>
+            <div><span class="rei-map__stat-num" data-map-nf></span><span class="rei-map__stat-lbl">dated in the future</span></div>
+          </div>
+          <a class="rei-map__panel-cta" data-map-link href="#">Read the full fact-check &rarr;</a>
+        </div>
+      </aside>
+    </div>
+    <p style="margin-top:var(--spacing-4);font-size:0.875rem;color:#6b7280;">Prefer a list? <a href="#states">Jump to every state alphabetically &darr;</a></p>
+  </div>
+</section>
+
 <section id="reduction">
   <div class="container">
     <div class="section-header">
@@ -168,52 +215,6 @@
   </div>
 </section>
 
-<section id="map" class="section-map">
-  <div class="container">
-    <div class="section-map__title">
-      <h2 class="section-map__h"><span>Nationwide</span> <span>Fact-Checks</span></h2>
-      <p class="section-map__sub">Explore activity by state</p>
-    </div>
-    <p class="section-map__intro">Hover a state for its fact-check summary. Click to see every DOJ claim about that state, verified against primary sources. States are colored by the share of claims that reduce to one of the four structural templates.</p>
-    <div class="rei-map" data-map>
-      <div>
-        <div class="rei-map__frame" data-map-frame>
-          <div class="rei-map__placeholder">Loading map&hellip;</div>
-        </div>
-        <div class="rei-map__insets" role="list" aria-label="Alaska, Hawaii, and District of Columbia">
-          <button type="button" class="rei-map__inset" data-postal="AK" role="listitem"><span class="rei-map__inset-abbr">AK</span><span class="rei-map__inset-name">Alaska</span></button>
-          <button type="button" class="rei-map__inset" data-postal="HI" role="listitem"><span class="rei-map__inset-abbr">HI</span><span class="rei-map__inset-name">Hawaii</span></button>
-          <button type="button" class="rei-map__inset" data-postal="DC" role="listitem"><span class="rei-map__inset-abbr">DC</span><span class="rei-map__inset-name">D.C.</span></button>
-        </div>
-      </div>
-      <aside class="rei-map__panel" data-map-panel aria-live="polite">
-        <div class="rei-map__panel-empty" data-map-empty>
-          <div class="rei-map__panel-hint">Hover over a state to view its fact-check.<br>Click a state to open its full page.</div>
-          <div class="rei-map__legend">
-            <div class="rei-map__legend-title">Templated share</div>
-            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--low"></span>0&ndash;33% templated</div>
-            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--mid"></span>34&ndash;66% templated</div>
-            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--high"></span>67&ndash;100% templated</div>
-            <div class="rei-map__legend-note">&ldquo;Templated&rdquo; = matches one of the four DOJ boilerplate items catalogued in <a href="/#reduction">the 243&nbsp;&rarr;&nbsp;4 reduction</a>.</div>
-          </div>
-        </div>
-        <div class="rei-map__panel-state" data-map-state hidden>
-          <div class="rei-map__panel-header">
-            <h3 data-map-name></h3>
-            <span class="rei-map__badge" data-map-abbr></span>
-          </div>
-          <div class="rei-map__panel-stats">
-            <div><span class="rei-map__stat-num" data-map-n></span><span class="rei-map__stat-lbl">claims on DOJ dashboard</span></div>
-            <div><span class="rei-map__stat-num" data-map-nt></span><span class="rei-map__stat-lbl">match one of 4 templates <span data-map-pt></span></span></div>
-            <div><span class="rei-map__stat-num" data-map-nf></span><span class="rei-map__stat-lbl">dated in the future</span></div>
-          </div>
-          <a class="rei-map__panel-cta" data-map-link href="#">Read the full fact-check &rarr;</a>
-        </div>
-      </aside>
-    </div>
-    <p style="margin-top:var(--spacing-4);font-size:0.875rem;color:#6b7280;">Prefer a list? <a href="#states">Jump to every state alphabetically &darr;</a></p>
-  </div>
-</section>
 
 <section id="states">
   <div class="container">
