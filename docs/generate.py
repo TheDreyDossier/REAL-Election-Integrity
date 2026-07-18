@@ -254,7 +254,6 @@ def render_home():
   <div class="hero-bg" role="presentation" aria-hidden="true"></div>
   <div class="hero-scrim" aria-hidden="true"></div>
   <div class="container hero-content">
-    <div class="kicker">Launched 3:01 PM PDT · July 16, 2026 · Fact-checked 4:00 PM PDT</div>
     <h1 class="hero-title">REAL Enforcement Actions to<br>Safeguard Election Integrity</h1>
     <p class="hero-sub">from the DOJ&rsquo;s lies</p>
     <p class="lede">The U.S. Department of Justice launched a public &ldquo;Election Integrity&rdquo; dashboard claiming <strong>243 enforcement actions</strong>. Fifty-one are dated <strong>September 18, 2026</strong> — nine weeks in the future. This site is a line-by-line fact-check.</p>
@@ -265,6 +264,15 @@ def render_home():
       <span><strong>13.2%</strong> have any source link on the DOJ site</span>
     </div>
     <p class="hero-caption">Source image: <a href="https://civilrights.justice.gov/electionintegrity">civilrights.justice.gov/electionintegrity</a> · U.S. government work, no copyright.</p>
+  </div>
+</section>
+
+<section class="hero-quote">
+  <div class="container">
+    <blockquote>
+      <p>&ldquo;They have information &mdash; I think I&rsquo;d take it&hellip; It&rsquo;s not an interference, they have information, I think I&rsquo;d take it.&rdquo;</p>
+      <cite>President Donald J. Trump, ABC News interview with George Stephanopoulos, <a href="https://www.bbc.co.uk/news/world-us-canada-48618273">June 12, 2019</a> — on whether he would accept opposition research on a political opponent from a foreign government.</cite>
+    </blockquote>
   </div>
 </section>
 

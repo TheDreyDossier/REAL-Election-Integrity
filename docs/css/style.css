@@ -272,6 +272,45 @@ p { margin-bottom: var(--spacing-4); }
 }
 .hero-caption a:hover { color: white; }
 
+/* Hero quote strip - mirrors DOJ site's Executive Order quote treatment */
+.hero-quote {
+  background: var(--color-primary-darker);
+  padding: var(--spacing-12) 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.hero-quote blockquote {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 var(--spacing-6);
+}
+.hero-quote blockquote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.875rem;
+  line-height: 1.35;
+  color: #fff3c4;
+  margin: 0 0 var(--spacing-6);
+  letter-spacing: 0.005em;
+}
+.hero-quote blockquote cite {
+  display: block;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 0.9375rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.55;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.hero-quote blockquote cite a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.hero-quote blockquote cite a:hover { color: white; }
+
 /* ==============================
    Container
    ============================== */
@@ -646,6 +685,9 @@ section.section-dark h2, section.section-dark h3 { color: white; }
     background:
       linear-gradient(180deg, rgba(22,46,81,0.3) 0%, rgba(22,46,81,0.55) 30%, rgba(22,46,81,0.95) 70%, rgba(22,46,81,0.98) 100%);
   }
+  .hero-quote { padding: var(--spacing-8) 0; }
+  .hero-quote blockquote p { font-size: 1.375rem; }
+  .hero-quote blockquote cite { font-size: 0.8125rem; }
   section { padding: var(--spacing-10) 0; }
   .site-footer .container { grid-template-columns: 1fr; }
   .big-stat .number { font-size: 2.25rem; }
