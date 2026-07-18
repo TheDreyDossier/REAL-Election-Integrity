@@ -166,7 +166,7 @@ def head(title, description, canonical="/"):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=hero-layout-2">
+<link rel="stylesheet" href="/css/style.css?v=hero-layout-3">
 <title>{title}</title>
 </head>
 <body>
@@ -256,18 +256,6 @@ def render_home():
   <div class="container hero-content">
     <h1 class="hero-title">REAL Enforcement Actions to<br>Safeguard Election Integrity</h1>
     <p class="hero-sub">from the DOJ&rsquo;s lies</p>
-  </div>
-</section>
-
-<section class="hero-below">
-  <div class="container">
-    <p class="lede">The U.S. Department of Justice launched a public &ldquo;Election Integrity&rdquo; dashboard claiming <strong>243 enforcement actions</strong>. Fifty-one are dated <strong>September 18, 2026</strong> — nine weeks in the future. This site is a line-by-line fact-check.</p>
-    <div class="meta">
-      <span><strong>{TOTAL_ACTIONS}</strong> total &ldquo;verified enforcement actions&rdquo;</span>
-      <span><strong>{TEMPLATED_TOTAL} of {TOTAL_ACTIONS}</strong> are duplicates of {UNDERLYING_REAL} templates</span>
-      <span><strong>{FUTURE_COUNT}</strong> dated in the future as of launch</span>
-      <span><strong>13.2%</strong> have any source link on the DOJ site</span>
-    </div>
     <p class="hero-caption">Trump &amp; Putin, Joint Base Elmendorf-Richardson, Anchorage, Alaska, <a href="https://www.theguardian.com/us-news/2026/jan/29/trump-putin-white-house-photo">August 15, 2025</a>. Trump kept this photo framed in the Palm Room of the White House. When critics objected, he removed the photo of his granddaughter beneath it — not the photo of Putin.</p>
   </div>
 </section>
@@ -287,6 +275,16 @@ def render_home():
       <div class="kicker">The Arithmetic</div>
       <h2>243 &rarr; 4</h2>
     </div>
+
+    <p class="lede-light">The U.S. Department of Justice launched a public &ldquo;Election Integrity&rdquo; dashboard claiming <strong>243 enforcement actions</strong>. Fifty-one are dated <strong>September 18, 2026</strong> — nine weeks in the future. This site is a line-by-line fact-check.</p>
+
+    <div class="meta-light">
+      <span><strong>{TOTAL_ACTIONS}</strong> total &ldquo;verified enforcement actions&rdquo;</span>
+      <span><strong>{TEMPLATED_TOTAL} of {TOTAL_ACTIONS}</strong> are duplicates of {UNDERLYING_REAL} templates</span>
+      <span><strong>{FUTURE_COUNT}</strong> dated in the future as of launch</span>
+      <span><strong>13.2%</strong> have any source link on the DOJ site</span>
+    </div>
+
     <p style="max-width:800px;font-size:1.0625rem;">Of the 243 &ldquo;verified enforcement actions&rdquo; on the DOJ dashboard, <strong>{TEMPLATED_TOTAL} ({int(100*TEMPLATED_TOTAL/TOTAL_ACTIONS)}%)</strong> are duplicates of just four underlying items, each replicated once per state. Consolidating those templates to their real items, the map's {TOTAL_ACTIONS} entries reduce to approximately <strong>90 discrete claims</strong> &mdash; of which only 32 (13.2%) carry any source link.</p>
 
     <table class="reduction-table">

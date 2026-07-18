@@ -209,7 +209,7 @@ p { margin-bottom: var(--spacing-4); }
   position: relative;
   overflow: hidden;
   padding: 0;
-  min-height: 560px;
+  min-height: 600px;
   display: flex;
   align-items: flex-end;
   background: var(--color-primary-darker);
@@ -226,10 +226,10 @@ p { margin-bottom: var(--spacing-4); }
 .hero-image .hero-scrim {
   position: absolute;
   inset: 0;
-  /* Lighter scrim overall so the photo reads clearly; deeper darkening only in the bottom-left corner where the headline sits (mirrors DOJ layout). */
+  /* Lighter scrim overall so the photo reads clearly; deeper darkening only in the bottom-left corner where the headline + caption sit (mirrors DOJ layout). */
   background:
-    linear-gradient(180deg, rgba(22,46,81,0) 0%, rgba(22,46,81,0) 50%, rgba(22,46,81,0.55) 85%, rgba(22,46,81,0.9) 100%),
-    linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0) 70%);
+    linear-gradient(180deg, rgba(22,46,81,0) 0%, rgba(22,46,81,0) 40%, rgba(22,46,81,0.7) 82%, rgba(22,46,81,0.95) 100%),
+    linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 70%);
   z-index: 1;
 }
 .hero-image .hero-content {
@@ -254,53 +254,54 @@ p { margin-bottom: var(--spacing-4); }
   font-weight: 400;
   font-size: 1.5rem;
   color: var(--color-warning);
-  margin-bottom: 0;
+  margin-bottom: var(--spacing-4);
   text-shadow: 0 2px 10px rgba(0,0,0,0.6);
   letter-spacing: 0.005em;
 }
 
-/* Section directly below the hero photo — carries the lede, meta stats, and image caption on solid navy, matching the DOJ dashboard's stacked layout. */
-.hero-below {
-  background: var(--color-primary-darker);
-  padding: var(--spacing-10) 0 var(--spacing-12);
-  color: white;
-}
-.hero-below .lede {
-  font-size: 1.25rem;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.92);
-  max-width: 780px;
-  margin: 0 0 var(--spacing-8) 0;
-}
-.hero-below .lede strong { color: var(--color-warning); }
-.hero-below .meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-6) var(--spacing-10);
-  padding: var(--spacing-6) 0 var(--spacing-4);
-  border-top: 1px solid rgba(255,255,255,0.12);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-  margin-bottom: var(--spacing-6);
-}
-.hero-below .meta span {
-  font-size: 0.875rem;
-  color: rgba(255,255,255,0.75);
-}
-.hero-below .meta strong { color: white; font-weight: 700; }
-.hero-caption {
+/* Small image caption under the hero subhead, over the photo. */
+.hero-image .hero-caption {
   font-size: 0.8125rem;
   line-height: 1.55;
-  color: rgba(255,255,255,0.6);
-  max-width: 780px;
+  color: rgba(255,255,255,0.78);
+  max-width: 640px;
   margin: 0;
   letter-spacing: 0.005em;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
 }
-.hero-caption a {
-  color: rgba(255,255,255,0.78);
+.hero-image .hero-caption a {
+  color: rgba(255,255,255,0.9);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.hero-caption a:hover { color: white; }
+.hero-image .hero-caption a:hover { color: white; }
+
+/* Lede + stats when placed inside the white "Arithmetic" section — dark on light. */
+.lede-light {
+  font-size: 1.1875rem;
+  line-height: 1.55;
+  color: var(--color-text);
+  max-width: 820px;
+  margin: var(--spacing-6) 0 var(--spacing-6) 0;
+}
+.lede-light strong { color: var(--color-primary); }
+.meta-light {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4) var(--spacing-8);
+  padding: var(--spacing-5) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  margin: 0 0 var(--spacing-8) 0;
+}
+.meta-light span {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+.meta-light strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
 
 /* Hero quote strip - mirrors DOJ site's Executive Order quote treatment */
 .hero-quote {
