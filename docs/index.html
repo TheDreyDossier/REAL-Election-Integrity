@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=hero-layout-6">
+<link rel="stylesheet" href="/css/style.css?v=map-v2">
 <title>The REAL Election Integrity — Fact-checking DOJ's Election Integrity dashboard</title>
 </head>
 <body>
@@ -30,6 +30,7 @@
       <a href="/">Home</a>
       <a href="/about.html">About</a>
       <a href="/method.html">Method</a>
+      <a href="/#map">Map</a>
       <a href="/#states">States</a>
       <a href="/report-an-error.html">Report an Error</a>
     </nav>
@@ -161,6 +162,53 @@
   </div>
 </section>
 
+<section id="map" class="section-map">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Nationwide Fact-Checks</div>
+      <h2>Explore activity by state</h2>
+    </div>
+    <p style="max-width:800px;margin-bottom:var(--spacing-6);">Hover a state for its fact-check summary. Click to see every DOJ claim about that state, verified against primary sources. States are colored by the share of claims that reduce to one of the four structural templates.</p>
+    <div class="rei-map" data-map>
+      <div>
+        <div class="rei-map__frame" data-map-frame>
+          <div class="rei-map__placeholder">Loading map&hellip;</div>
+        </div>
+        <div class="rei-map__insets" role="list" aria-label="Alaska, Hawaii, and District of Columbia">
+          <button type="button" class="rei-map__inset" data-postal="AK" role="listitem"><span class="rei-map__inset-abbr">AK</span><span class="rei-map__inset-name">Alaska</span></button>
+          <button type="button" class="rei-map__inset" data-postal="HI" role="listitem"><span class="rei-map__inset-abbr">HI</span><span class="rei-map__inset-name">Hawaii</span></button>
+          <button type="button" class="rei-map__inset" data-postal="DC" role="listitem"><span class="rei-map__inset-abbr">DC</span><span class="rei-map__inset-name">D.C.</span></button>
+        </div>
+      </div>
+      <aside class="rei-map__panel" data-map-panel aria-live="polite">
+        <div class="rei-map__panel-empty" data-map-empty>
+          <div class="rei-map__panel-hint">Hover over a state to view its fact-check.<br>Click a state to open its full page.</div>
+          <div class="rei-map__legend">
+            <div class="rei-map__legend-title">Templated share</div>
+            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--low"></span>0&ndash;33% templated</div>
+            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--mid"></span>34&ndash;66% templated</div>
+            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--high"></span>67&ndash;100% templated</div>
+            <div class="rei-map__legend-note">&ldquo;Templated&rdquo; = matches one of the four DOJ boilerplate items catalogued in <a href="/#reduction">the 243&nbsp;&rarr;&nbsp;4 reduction</a>.</div>
+          </div>
+        </div>
+        <div class="rei-map__panel-state" data-map-state hidden>
+          <div class="rei-map__panel-header">
+            <h3 data-map-name></h3>
+            <span class="rei-map__badge" data-map-abbr></span>
+          </div>
+          <div class="rei-map__panel-stats">
+            <div><span class="rei-map__stat-num" data-map-n></span><span class="rei-map__stat-lbl">claims on DOJ dashboard</span></div>
+            <div><span class="rei-map__stat-num" data-map-nt></span><span class="rei-map__stat-lbl">match one of 4 templates <span data-map-pt></span></span></div>
+            <div><span class="rei-map__stat-num" data-map-nf></span><span class="rei-map__stat-lbl">dated in the future</span></div>
+          </div>
+          <a class="rei-map__panel-cta" data-map-link href="#">Read the full fact-check &rarr;</a>
+        </div>
+      </aside>
+    </div>
+    <p style="margin-top:var(--spacing-4);font-size:0.875rem;color:#6b7280;">Prefer a list? <a href="#states">Jump to every state alphabetically &darr;</a></p>
+  </div>
+</section>
+
 <section id="states">
   <div class="container">
     <div class="section-header">
@@ -233,6 +281,115 @@
     <p style="font-size:1.125rem;line-height:1.55;color:rgba(255,255,255,0.9);"><strong>The four items are the story. The 243 count is the frame.</strong></p>
   </div>
 </section>
+
+<script>
+(function() {
+  var STATE_DATA = {"AL":{"name":"Alabama","slug":"alabama","n":6,"nt":4,"nf":1,"pt":67},"AK":{"name":"Alaska","slug":"alaska","n":4,"nt":3,"nf":1,"pt":75},"AZ":{"name":"Arizona","slug":"arizona","n":8,"nt":3,"nf":4,"pt":38},"AR":{"name":"Arkansas","slug":"arkansas","n":4,"nt":3,"nf":1,"pt":75},"CA":{"name":"California","slug":"california","n":11,"nt":3,"nf":1,"pt":27},"CO":{"name":"Colorado","slug":"colorado","n":4,"nt":3,"nf":1,"pt":75},"CT":{"name":"Connecticut","slug":"connecticut","n":4,"nt":3,"nf":1,"pt":75},"DE":{"name":"Delaware","slug":"delaware","n":4,"nt":3,"nf":2,"pt":75},"DC":{"name":"District of Columbia","slug":"district-of-columbia","n":5,"nt":3,"nf":1,"pt":60},"FL":{"name":"Florida","slug":"florida","n":4,"nt":3,"nf":2,"pt":75},"GA":{"name":"Georgia","slug":"georgia","n":4,"nt":3,"nf":1,"pt":75},"HI":{"name":"Hawaii","slug":"hawaii","n":4,"nt":3,"nf":1,"pt":75},"ID":{"name":"Idaho","slug":"idaho","n":4,"nt":3,"nf":1,"pt":75},"IL":{"name":"Illinois","slug":"illinois","n":5,"nt":3,"nf":1,"pt":60},"IN":{"name":"Indiana","slug":"indiana","n":4,"nt":3,"nf":1,"pt":75},"IA":{"name":"Iowa","slug":"iowa","n":4,"nt":3,"nf":1,"pt":75},"KS":{"name":"Kansas","slug":"kansas","n":4,"nt":3,"nf":2,"pt":75},"KY":{"name":"Kentucky","slug":"kentucky","n":5,"nt":3,"nf":1,"pt":60},"LA":{"name":"Louisiana","slug":"louisiana","n":5,"nt":4,"nf":1,"pt":80},"ME":{"name":"Maine","slug":"maine","n":4,"nt":3,"nf":1,"pt":75},"MD":{"name":"Maryland","slug":"maryland","n":6,"nt":3,"nf":1,"pt":50},"MA":{"name":"Massachusetts","slug":"massachusetts","n":6,"nt":3,"nf":4,"pt":50},"MI":{"name":"Michigan","slug":"michigan","n":7,"nt":3,"nf":4,"pt":43},"MN":{"name":"Minnesota","slug":"minnesota","n":6,"nt":3,"nf":3,"pt":50},"MS":{"name":"Mississippi","slug":"mississippi","n":4,"nt":3,"nf":1,"pt":75},"MO":{"name":"Missouri","slug":"missouri","n":4,"nt":3,"nf":1,"pt":75},"MT":{"name":"Montana","slug":"montana","n":4,"nt":3,"nf":1,"pt":75},"NE":{"name":"Nebraska","slug":"nebraska","n":4,"nt":3,"nf":1,"pt":75},"NV":{"name":"Nevada","slug":"nevada","n":4,"nt":3,"nf":1,"pt":75},"NH":{"name":"New Hampshire","slug":"new-hampshire","n":6,"nt":3,"nf":4,"pt":50},"NJ":{"name":"New Jersey","slug":"new-jersey","n":7,"nt":3,"nf":1,"pt":43},"NM":{"name":"New Mexico","slug":"new-mexico","n":4,"nt":3,"nf":1,"pt":75},"NY":{"name":"New York","slug":"new-york","n":5,"nt":3,"nf":1,"pt":60},"NC":{"name":"North Carolina","slug":"north-carolina","n":6,"nt":3,"nf":1,"pt":50},"ND":{"name":"North Dakota","slug":"north-dakota","n":3,"nt":3,"nf":1,"pt":100},"OH":{"name":"Ohio","slug":"ohio","n":4,"nt":3,"nf":1,"pt":75},"OK":{"name":"Oklahoma","slug":"oklahoma","n":4,"nt":3,"nf":1,"pt":75},"OR":{"name":"Oregon","slug":"oregon","n":5,"nt":3,"nf":1,"pt":60},"PA":{"name":"Pennsylvania","slug":"pennsylvania","n":4,"nt":3,"nf":1,"pt":75},"RI":{"name":"Rhode Island","slug":"rhode-island","n":4,"nt":3,"nf":2,"pt":75},"SC":{"name":"South Carolina","slug":"south-carolina","n":4,"nt":3,"nf":1,"pt":75},"SD":{"name":"South Dakota","slug":"south-dakota","n":4,"nt":3,"nf":2,"pt":75},"TN":{"name":"Tennessee","slug":"tennessee","n":4,"nt":3,"nf":1,"pt":75},"TX":{"name":"Texas","slug":"texas","n":5,"nt":4,"nf":1,"pt":80},"UT":{"name":"Utah","slug":"utah","n":4,"nt":3,"nf":1,"pt":75},"VT":{"name":"Vermont","slug":"vermont","n":4,"nt":3,"nf":1,"pt":75},"VA":{"name":"Virginia","slug":"virginia","n":6,"nt":3,"nf":3,"pt":50},"WA":{"name":"Washington","slug":"washington","n":4,"nt":3,"nf":1,"pt":75},"WV":{"name":"West Virginia","slug":"west-virginia","n":4,"nt":3,"nf":1,"pt":75},"WI":{"name":"Wisconsin","slug":"wisconsin","n":4,"nt":3,"nf":1,"pt":75},"WY":{"name":"Wyoming","slug":"wyoming","n":6,"nt":3,"nf":1,"pt":50}};
+  // Simplemaps SVG uses id="USXX" (state postal). Map postal -> our data key (also postal).
+  var mapEl = document.querySelector('[data-map]');
+  if (!mapEl) return;
+  var frame = mapEl.querySelector('[data-map-frame]');
+  var panel = mapEl.querySelector('[data-map-panel]');
+  var emptyEl = mapEl.querySelector('[data-map-empty]');
+  var stateEl = mapEl.querySelector('[data-map-state]');
+  var nameEl = mapEl.querySelector('[data-map-name]');
+  var abbrEl = mapEl.querySelector('[data-map-abbr]');
+  var nEl = mapEl.querySelector('[data-map-n]');
+  var ntEl = mapEl.querySelector('[data-map-nt]');
+  var nfEl = mapEl.querySelector('[data-map-nf]');
+  var ptEl = mapEl.querySelector('[data-map-pt]');
+  var linkEl = mapEl.querySelector('[data-map-link]');
+
+  function classify(pt) {
+    if (pt >= 67) return 'high';
+    if (pt >= 34) return 'mid';
+    return 'low';
+  }
+
+  function showState(postal) {
+    var d = STATE_DATA[postal];
+    if (!d) return;
+    nameEl.textContent = d.name;
+    abbrEl.textContent = postal;
+    nEl.textContent = d.n;
+    ntEl.textContent = d.nt;
+    nfEl.textContent = d.nf;
+    ptEl.textContent = '(' + d.pt + '%)';
+    linkEl.href = '/states/' + d.slug + '.html';
+    emptyEl.hidden = true;
+    stateEl.hidden = false;
+  }
+
+  function resetPanel() {
+    emptyEl.hidden = false;
+    stateEl.hidden = true;
+  }
+
+  // Fetch and inject the SVG so we can style + wire events
+  fetch('/assets/us-map.svg').then(function(r) { return r.text(); }).then(function(txt) {
+    // Wrap in a div so we can innerHTML-parse
+    var wrap = document.createElement('div');
+    wrap.innerHTML = txt;
+    var svg = wrap.querySelector('svg');
+    if (!svg) return;
+    svg.setAttribute('class', 'rei-map__svg');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Interactive map of the United States');
+    // Wipe any inline attributes we don't want
+    svg.removeAttribute('width');
+    svg.removeAttribute('height');
+    svg.removeAttribute('fill');
+    svg.removeAttribute('stroke');
+    svg.removeAttribute('stroke-linecap');
+    svg.removeAttribute('stroke-linejoin');
+    svg.removeAttribute('stroke-width');
+
+    var paths = svg.querySelectorAll('path[id^="US"]');
+    paths.forEach(function(p) {
+      var id = p.getAttribute('id') || '';
+      var postal = id.replace(/^US/, '');
+      var d = STATE_DATA[postal];
+      if (!d) return;
+      p.setAttribute('class', 'rei-map__state rei-map__state--' + classify(d.pt));
+      p.setAttribute('data-postal', postal);
+      p.setAttribute('tabindex', '0');
+      p.setAttribute('role', 'link');
+      p.setAttribute('aria-label', d.name + ': ' + d.n + ' claims, ' + d.pt + '% templated');
+      var title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+      title.textContent = d.name + ' — ' + d.n + ' claims — ' + d.pt + '% templated';
+      p.appendChild(title);
+      p.addEventListener('mouseenter', function() { showState(postal); });
+      p.addEventListener('focus', function() { showState(postal); });
+      p.addEventListener('click', function() { window.location.href = '/states/' + d.slug + '.html'; });
+      p.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.href = '/states/' + d.slug + '.html';
+        }
+      });
+    });
+
+    frame.innerHTML = '';
+    frame.appendChild(svg);
+    frame.addEventListener('mouseleave', resetPanel);
+  }).catch(function(err) {
+    frame.innerHTML = '<div class="rei-map__placeholder">Map failed to load. Use the state list below.</div>';
+  });
+
+  // Inset buttons for AK, HI, DC (shown outside the SVG map)
+  document.querySelectorAll('.rei-map__inset').forEach(function(btn) {
+    var postal = btn.getAttribute('data-postal');
+    var d = STATE_DATA[postal];
+    if (!d) return;
+    btn.classList.add('rei-map__inset--' + classify(d.pt));
+    btn.setAttribute('aria-label', d.name + ': ' + d.n + ' claims, ' + d.pt + '% templated');
+    btn.addEventListener('mouseenter', function() { showState(postal); });
+    btn.addEventListener('focus', function() { showState(postal); });
+    btn.addEventListener('mouseleave', resetPanel);
+    btn.addEventListener('click', function() { window.location.href = '/states/' + d.slug + '.html'; });
+  });
+})();
+</script>
 <footer class="site-footer">
   <div class="container">
     <div class="about">
@@ -253,7 +410,7 @@
       <a href="https://github.com/TheDreyDossier/REAL-Election-Integrity/tree/main/evidence/captured">Site capture</a>
     </div>
     <div class="disclaimer">
-      This site is a work of independent journalism and civic accountability. It reproduces DOJ visual language for the purpose of side-by-side comparison and fact-checking. No content on this site is issued by, endorsed by, or affiliated with any federal agency. All trademarks, seals, and imagery of the U.S. government remain the property of the U.S. government. All rights reserved © 2026 The Drey Dossier.
+      This site is a work of independent journalism and civic accountability. It reproduces DOJ visual language for the purpose of side-by-side comparison and fact-checking. No content on this site is issued by, endorsed by, or affiliated with any federal agency. All trademarks, seals, and imagery of the U.S. government remain the property of the U.S. government. Interactive US map SVG courtesy of <a href="https://simplemaps.com" rel="external nofollow">Simplemaps.com</a> (free SVG library). All rights reserved © 2026 The Drey Dossier.
     </div>
   </div>
 </footer>

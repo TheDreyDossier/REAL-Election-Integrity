@@ -751,3 +751,250 @@ section.section-dark h2, section.section-dark h3 { color: white; }
   .reduction-table th, .reduction-table td { padding: var(--spacing-3); font-size: 0.875rem; }
   .site-nav { width: 100%; justify-content: flex-start; margin-left: 0; }
 }
+
+/* =============================================================
+   INTERACTIVE MAP (Nationwide Fact-Checks)
+   ============================================================= */
+.section-map { background: white; padding: var(--spacing-12) 0; }
+
+.rei-map {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(280px, 1fr);
+  gap: var(--spacing-6);
+  align-items: start;
+  border: 1px solid var(--color-border, #e5e7eb);
+  background: #fafbfc;
+  padding: var(--spacing-5);
+  border-radius: 4px;
+}
+
+.rei-map__frame {
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #eef1f5;
+  padding: var(--spacing-3);
+  border-radius: 3px;
+}
+
+.rei-map__placeholder {
+  color: #6b7280;
+  font-size: 0.9375rem;
+  font-style: italic;
+}
+
+.rei-map__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* State fills — colored by templated share */
+.rei-map__state {
+  stroke: white;
+  stroke-width: 0.5;
+  cursor: pointer;
+  transition: fill 0.12s ease, filter 0.12s ease;
+  outline: none;
+}
+.rei-map__state--low { fill: #1a4480; }         /* mostly real — navy */
+.rei-map__state--mid { fill: #c48a30; }         /* mid-range — gold-brown */
+.rei-map__state--high { fill: #8b0a03; }        /* mostly templated — deep red */
+.rei-map__state:hover,
+.rei-map__state:focus {
+  fill: var(--color-warning);
+  filter: brightness(1.05);
+}
+
+/* Right panel */
+.rei-map__panel {
+  background: white;
+  border: 1px solid #eef1f5;
+  border-radius: 3px;
+  padding: var(--spacing-4) var(--spacing-5);
+  min-height: 340px;
+}
+
+.rei-map__panel-hint {
+  color: #4b5563;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin-bottom: var(--spacing-5);
+}
+
+.rei-map__legend {
+  border-top: 1px solid #e5e7eb;
+  padding-top: var(--spacing-4);
+  font-size: 0.8125rem;
+  color: #374151;
+}
+.rei-map__legend-title {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-2);
+  font-weight: 600;
+}
+.rei-map__legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.rei-swatch {
+  width: 16px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.rei-swatch--low { background: #1a4480; }
+.rei-swatch--mid { background: #c48a30; }
+.rei-swatch--high { background: #8b0a03; }
+.rei-map__legend-note {
+  margin-top: var(--spacing-3);
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.rei-map__panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 2px solid var(--color-primary-darker);
+}
+.rei-map__panel-header h3 {
+  margin: 0;
+  font-size: 1.375rem;
+  color: var(--color-primary-darker);
+  font-family: var(--font-serif, Merriweather, serif);
+}
+.rei-map__badge {
+  background: var(--color-primary-darker);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.rei-map__panel-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-4);
+}
+.rei-map__panel-stats > div {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.rei-map__stat-num {
+  font-family: var(--font-serif, Merriweather, serif);
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: var(--color-primary-darker);
+  min-width: 42px;
+  text-align: right;
+}
+.rei-map__stat-lbl {
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.35;
+}
+.rei-map__stat-lbl [data-map-pt] {
+  color: #8b0a03;
+  font-weight: 600;
+}
+
+.rei-map__panel-cta {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 3px;
+  transition: background 0.12s;
+}
+.rei-map__panel-cta:hover,
+.rei-map__panel-cta:focus {
+  background: var(--color-primary-dark);
+  color: white;
+}
+
+.rei-map__mobile-fallback {
+  margin-top: var(--spacing-5);
+}
+.rei-map__mobile-fallback summary {
+  cursor: pointer;
+  color: var(--color-primary);
+  font-weight: 600;
+  padding: var(--spacing-2) 0;
+}
+.state-grid--compact { margin-top: var(--spacing-3); }
+
+/* Inset buttons for Alaska, Hawaii, D.C. */
+.rei-map__insets {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-3);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.rei-map__inset {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: white;
+  border: 2px solid #1a4480;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--color-primary-darker);
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.rei-map__inset:hover,
+.rei-map__inset:focus {
+  background: var(--color-warning);
+  border-color: var(--color-warning-dark);
+  outline: none;
+}
+.rei-map__inset--low { border-color: #1a4480; }
+.rei-map__inset--mid { border-color: #c48a30; }
+.rei-map__inset--high { border-color: #8b0a03; }
+.rei-map__inset-abbr {
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  padding: 2px 6px;
+  border-radius: 2px;
+  color: white;
+}
+.rei-map__inset--low .rei-map__inset-abbr { background: #1a4480; }
+.rei-map__inset--mid .rei-map__inset-abbr { background: #c48a30; }
+.rei-map__inset--high .rei-map__inset-abbr { background: #8b0a03; }
+.rei-map__inset-name { font-weight: 500; }
+
+/* Mobile: stack the map + panel; the map still works via tap */
+@media (max-width: 900px) {
+  .rei-map {
+    grid-template-columns: 1fr;
+  }
+  .rei-map__frame { min-height: 240px; }
+  .rei-map__panel { min-height: 0; }
+}

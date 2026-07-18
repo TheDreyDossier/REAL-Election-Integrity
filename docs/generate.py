@@ -146,6 +146,42 @@ for state_code, state in STATES.items():
 TEMPLATED_TOTAL = sum(TEMPLATE_COUNTS.values())
 UNDERLYING_REAL = 4  # T1 (1 letter) + T2 (1 program) + T3 (1 program) + T4 (7 cases displayed as 3)
 
+# Per-state stats for the interactive map
+STATE_STATS = {}  # code -> {n, n_templated, n_future, pct_templated}
+for state_code, state in STATES.items():
+    n = len(state["actions"])
+    n_templated = 0
+    n_future = 0
+    for a in state["actions"]:
+        key, _ = classify(a)
+        if key:
+            n_templated += 1
+        d = parse_date(a["date"])
+        if d and d > TODAY:
+            n_future += 1
+    pct_templated = int(round(100 * n_templated / n)) if n else 0
+    STATE_STATS[state_code] = {
+        "n": n,
+        "n_templated": n_templated,
+        "n_future": n_future,
+        "pct_templated": pct_templated,
+    }
+
+import json as _json
+def _slug_for(code):
+    return STATES[code]["name"].lower().replace(" ", "-")
+MAP_STATE_DATA_JSON = _json.dumps({
+    code: {
+        "name": STATES[code]["name"],
+        "slug": _slug_for(code),
+        "n": STATE_STATS[code]["n"],
+        "nt": STATE_STATS[code]["n_templated"],
+        "nf": STATE_STATS[code]["n_future"],
+        "pt": STATE_STATS[code]["pct_templated"],
+    }
+    for code in STATE_STATS
+}, separators=(",", ":"))
+
 # ==========================================================
 # HTML fragments
 # ==========================================================
@@ -166,7 +202,7 @@ def head(title, description, canonical="/"):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=hero-layout-6">
+<link rel="stylesheet" href="/css/style.css?v=map-v2">
 <title>{title}</title>
 </head>
 <body>
@@ -185,6 +221,7 @@ HEADER = '''<header class="site-header">
       <a href="/">Home</a>
       <a href="/about.html">About</a>
       <a href="/method.html">Method</a>
+      <a href="/#map">Map</a>
       <a href="/#states">States</a>
       <a href="/report-an-error.html">Report an Error</a>
     </nav>
@@ -196,6 +233,117 @@ HEADER = '''<header class="site-header">
     Get involved and learn more about the division's <a href="https://civilrights.justice.gov/electionintegrity" rel="external nofollow">election-integrity enforcement actions.</a>
   </div>
 </div>
+'''
+
+MAP_SCRIPT_TEMPLATE = '''
+<script>
+(function() {
+  var STATE_DATA = __STATE_DATA__;
+  // Simplemaps SVG uses id="USXX" (state postal). Map postal -> our data key (also postal).
+  var mapEl = document.querySelector('[data-map]');
+  if (!mapEl) return;
+  var frame = mapEl.querySelector('[data-map-frame]');
+  var panel = mapEl.querySelector('[data-map-panel]');
+  var emptyEl = mapEl.querySelector('[data-map-empty]');
+  var stateEl = mapEl.querySelector('[data-map-state]');
+  var nameEl = mapEl.querySelector('[data-map-name]');
+  var abbrEl = mapEl.querySelector('[data-map-abbr]');
+  var nEl = mapEl.querySelector('[data-map-n]');
+  var ntEl = mapEl.querySelector('[data-map-nt]');
+  var nfEl = mapEl.querySelector('[data-map-nf]');
+  var ptEl = mapEl.querySelector('[data-map-pt]');
+  var linkEl = mapEl.querySelector('[data-map-link]');
+
+  function classify(pt) {
+    if (pt >= 67) return 'high';
+    if (pt >= 34) return 'mid';
+    return 'low';
+  }
+
+  function showState(postal) {
+    var d = STATE_DATA[postal];
+    if (!d) return;
+    nameEl.textContent = d.name;
+    abbrEl.textContent = postal;
+    nEl.textContent = d.n;
+    ntEl.textContent = d.nt;
+    nfEl.textContent = d.nf;
+    ptEl.textContent = '(' + d.pt + '%)';
+    linkEl.href = '/states/' + d.slug + '.html';
+    emptyEl.hidden = true;
+    stateEl.hidden = false;
+  }
+
+  function resetPanel() {
+    emptyEl.hidden = false;
+    stateEl.hidden = true;
+  }
+
+  // Fetch and inject the SVG so we can style + wire events
+  fetch('/assets/us-map.svg').then(function(r) { return r.text(); }).then(function(txt) {
+    // Wrap in a div so we can innerHTML-parse
+    var wrap = document.createElement('div');
+    wrap.innerHTML = txt;
+    var svg = wrap.querySelector('svg');
+    if (!svg) return;
+    svg.setAttribute('class', 'rei-map__svg');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Interactive map of the United States');
+    // Wipe any inline attributes we don't want
+    svg.removeAttribute('width');
+    svg.removeAttribute('height');
+    svg.removeAttribute('fill');
+    svg.removeAttribute('stroke');
+    svg.removeAttribute('stroke-linecap');
+    svg.removeAttribute('stroke-linejoin');
+    svg.removeAttribute('stroke-width');
+
+    var paths = svg.querySelectorAll('path[id^="US"]');
+    paths.forEach(function(p) {
+      var id = p.getAttribute('id') || '';
+      var postal = id.replace(/^US/, '');
+      var d = STATE_DATA[postal];
+      if (!d) return;
+      p.setAttribute('class', 'rei-map__state rei-map__state--' + classify(d.pt));
+      p.setAttribute('data-postal', postal);
+      p.setAttribute('tabindex', '0');
+      p.setAttribute('role', 'link');
+      p.setAttribute('aria-label', d.name + ': ' + d.n + ' claims, ' + d.pt + '% templated');
+      var title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+      title.textContent = d.name + ' \u2014 ' + d.n + ' claims \u2014 ' + d.pt + '% templated';
+      p.appendChild(title);
+      p.addEventListener('mouseenter', function() { showState(postal); });
+      p.addEventListener('focus', function() { showState(postal); });
+      p.addEventListener('click', function() { window.location.href = '/states/' + d.slug + '.html'; });
+      p.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.href = '/states/' + d.slug + '.html';
+        }
+      });
+    });
+
+    frame.innerHTML = '';
+    frame.appendChild(svg);
+    frame.addEventListener('mouseleave', resetPanel);
+  }).catch(function(err) {
+    frame.innerHTML = '<div class="rei-map__placeholder">Map failed to load. Use the state list below.</div>';
+  });
+
+  // Inset buttons for AK, HI, DC (shown outside the SVG map)
+  document.querySelectorAll('.rei-map__inset').forEach(function(btn) {
+    var postal = btn.getAttribute('data-postal');
+    var d = STATE_DATA[postal];
+    if (!d) return;
+    btn.classList.add('rei-map__inset--' + classify(d.pt));
+    btn.setAttribute('aria-label', d.name + ': ' + d.n + ' claims, ' + d.pt + '% templated');
+    btn.addEventListener('mouseenter', function() { showState(postal); });
+    btn.addEventListener('focus', function() { showState(postal); });
+    btn.addEventListener('mouseleave', resetPanel);
+    btn.addEventListener('click', function() { window.location.href = '/states/' + d.slug + '.html'; });
+  });
+})();
+</script>
 '''
 
 FOOTER = '''<footer class="site-footer">
@@ -218,7 +366,7 @@ FOOTER = '''<footer class="site-footer">
       <a href="https://github.com/TheDreyDossier/REAL-Election-Integrity/tree/main/evidence/captured">Site capture</a>
     </div>
     <div class="disclaimer">
-      This site is a work of independent journalism and civic accountability. It reproduces DOJ visual language for the purpose of side-by-side comparison and fact-checking. No content on this site is issued by, endorsed by, or affiliated with any federal agency. All trademarks, seals, and imagery of the U.S. government remain the property of the U.S. government. All rights reserved © 2026 The Drey Dossier.
+      This site is a work of independent journalism and civic accountability. It reproduces DOJ visual language for the purpose of side-by-side comparison and fact-checking. No content on this site is issued by, endorsed by, or affiliated with any federal agency. All trademarks, seals, and imagery of the U.S. government remain the property of the U.S. government. Interactive US map SVG courtesy of <a href="https://simplemaps.com" rel="external nofollow">Simplemaps.com</a> (free SVG library). All rights reserved © 2026 The Drey Dossier.
     </div>
   </div>
 </footer>
@@ -369,6 +517,53 @@ def render_home():
   </div>
 </section>
 
+<section id="map" class="section-map">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Nationwide Fact-Checks</div>
+      <h2>Explore activity by state</h2>
+    </div>
+    <p style="max-width:800px;margin-bottom:var(--spacing-6);">Hover a state for its fact-check summary. Click to see every DOJ claim about that state, verified against primary sources. States are colored by the share of claims that reduce to one of the four structural templates.</p>
+    <div class="rei-map" data-map>
+      <div>
+        <div class="rei-map__frame" data-map-frame>
+          <div class="rei-map__placeholder">Loading map&hellip;</div>
+        </div>
+        <div class="rei-map__insets" role="list" aria-label="Alaska, Hawaii, and District of Columbia">
+          <button type="button" class="rei-map__inset" data-postal="AK" role="listitem"><span class="rei-map__inset-abbr">AK</span><span class="rei-map__inset-name">Alaska</span></button>
+          <button type="button" class="rei-map__inset" data-postal="HI" role="listitem"><span class="rei-map__inset-abbr">HI</span><span class="rei-map__inset-name">Hawaii</span></button>
+          <button type="button" class="rei-map__inset" data-postal="DC" role="listitem"><span class="rei-map__inset-abbr">DC</span><span class="rei-map__inset-name">D.C.</span></button>
+        </div>
+      </div>
+      <aside class="rei-map__panel" data-map-panel aria-live="polite">
+        <div class="rei-map__panel-empty" data-map-empty>
+          <div class="rei-map__panel-hint">Hover over a state to view its fact-check.<br>Click a state to open its full page.</div>
+          <div class="rei-map__legend">
+            <div class="rei-map__legend-title">Templated share</div>
+            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--low"></span>0&ndash;33% templated</div>
+            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--mid"></span>34&ndash;66% templated</div>
+            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--high"></span>67&ndash;100% templated</div>
+            <div class="rei-map__legend-note">&ldquo;Templated&rdquo; = matches one of the four DOJ boilerplate items catalogued in <a href="/#reduction">the 243&nbsp;&rarr;&nbsp;4 reduction</a>.</div>
+          </div>
+        </div>
+        <div class="rei-map__panel-state" data-map-state hidden>
+          <div class="rei-map__panel-header">
+            <h3 data-map-name></h3>
+            <span class="rei-map__badge" data-map-abbr></span>
+          </div>
+          <div class="rei-map__panel-stats">
+            <div><span class="rei-map__stat-num" data-map-n></span><span class="rei-map__stat-lbl">claims on DOJ dashboard</span></div>
+            <div><span class="rei-map__stat-num" data-map-nt></span><span class="rei-map__stat-lbl">match one of 4 templates <span data-map-pt></span></span></div>
+            <div><span class="rei-map__stat-num" data-map-nf></span><span class="rei-map__stat-lbl">dated in the future</span></div>
+          </div>
+          <a class="rei-map__panel-cta" data-map-link href="#">Read the full fact-check &rarr;</a>
+        </div>
+      </aside>
+    </div>
+    <p style="margin-top:var(--spacing-4);font-size:0.875rem;color:#6b7280;">Prefer a list? <a href="#states">Jump to every state alphabetically &darr;</a></p>
+  </div>
+</section>
+
 <section id="states">
   <div class="container">
     <div class="section-header">
@@ -392,6 +587,7 @@ def render_home():
   </div>
 </section>
 '''
+    html += MAP_SCRIPT_TEMPLATE.replace("__STATE_DATA__", MAP_STATE_DATA_JSON)
     html += FOOTER
     return html
 
