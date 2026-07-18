@@ -217,9 +217,9 @@ p { margin-bottom: var(--spacing-4); }
 .hero-image .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('/assets/img/doj-hero.jpg');
+  background-image: url('/assets/img/trump-putin-alaska.jpg');
   background-size: cover;
-  background-position: center 30%;
+  background-position: center 55%;
   background-repeat: no-repeat;
   z-index: 0;
 }
@@ -227,8 +227,8 @@ p { margin-bottom: var(--spacing-4); }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(22,46,81,0.15) 0%, rgba(22,46,81,0.35) 40%, rgba(22,46,81,0.92) 85%, rgba(22,46,81,0.98) 100%),
-    linear-gradient(90deg, rgba(22,46,81,0.55) 0%, rgba(22,46,81,0.15) 45%, rgba(22,46,81,0) 100%);
+    linear-gradient(180deg, rgba(22,46,81,0.15) 0%, rgba(22,46,81,0.4) 45%, rgba(22,46,81,0.92) 88%, rgba(22,46,81,0.98) 100%),
+    linear-gradient(90deg, rgba(22,46,81,0.7) 0%, rgba(22,46,81,0.25) 42%, rgba(22,46,81,0) 75%, rgba(22,46,81,0.15) 100%);
   z-index: 1;
 }
 .hero-image .hero-content {
