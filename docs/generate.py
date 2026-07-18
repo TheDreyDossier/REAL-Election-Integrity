@@ -166,7 +166,7 @@ def head(title, description, canonical="/"):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=hero-layout-5">
+<link rel="stylesheet" href="/css/style.css?v=hero-layout-6">
 <title>{title}</title>
 </head>
 <body>
@@ -256,7 +256,7 @@ def render_home():
   <div class="container hero-content">
     <h1 class="hero-title"><span class="hero-line">REAL Enforcement Actions to</span> <span class="hero-line">Safeguard Election Integrity</span></h1>
     <p class="hero-sub">from the DOJ&rsquo;s lies</p>
-    <p class="hero-caption">Trump &amp; Putin, Anchorage, Alaska, <a href="https://www.theguardian.com/us-news/2026/jan/29/trump-putin-white-house-photo">August 15, 2025</a>.</p>
+    <p class="hero-caption">The photo Trump hung <a href="https://www.theguardian.com/us-news/2026/jan/29/trump-putin-white-house-photo">in the White House</a> above his granddaughter&rsquo;s.</p>
   </div>
 </section>
 
