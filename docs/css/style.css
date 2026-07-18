@@ -205,77 +205,90 @@ p { margin-bottom: var(--spacing-4); }
 .hero .meta strong { color: white; font-weight: 700; }
 
 /* Hero with photo background - mirrors DOJ site composition */
-.hero-image {
-  position: relative;
+/* Hero photo — clean, full-bleed, NO text overlay (mirrors DOJ layout) */
+.hero-photo {
+  width: 100%;
   overflow: hidden;
-  padding: 0;
-  min-height: 600px;
-  display: flex;
-  align-items: flex-end;
   background: var(--color-primary-darker);
+  line-height: 0;
+  padding: 0 !important;
+  margin: 0;
 }
-.hero-image .hero-bg {
-  position: absolute;
-  inset: 0;
+.hero-photo__img {
+  width: 100%;
+  height: min(56vw, 640px);
   background-image: url('/assets/img/trump-putin-alaska.jpg');
   background-size: cover;
-  background-position: center 42%;
+  background-position: center 40%;
   background-repeat: no-repeat;
-  z-index: 0;
-}
-.hero-image .hero-scrim {
-  position: absolute;
-  inset: 0;
-  /* Lighter scrim overall so the photo reads clearly; deeper darkening only in the bottom-left corner where the headline + caption sit (mirrors DOJ layout). */
-  background:
-    linear-gradient(180deg, rgba(22,46,81,0) 0%, rgba(22,46,81,0) 40%, rgba(22,46,81,0.7) 82%, rgba(22,46,81,0.95) 100%),
-    linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 70%);
-  z-index: 1;
-}
-.hero-image .hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 0 0 var(--spacing-10);
-  width: 100%;
-}
-.hero-image .hero-title {
-  font-size: 3.5rem;
-  line-height: 1.05;
-  font-weight: 900;
-  color: white;
-  max-width: 900px;
-  margin-bottom: var(--spacing-2);
-  text-shadow: 0 2px 12px rgba(0,0,0,0.65);
-  letter-spacing: -0.01em;
-}
-.hero-image .hero-title .hero-line { display: block; }
-.hero-image .hero-sub {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 1.5rem;
-  color: var(--color-warning);
-  margin-bottom: var(--spacing-4);
-  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-  letter-spacing: 0.005em;
 }
 
-/* Small image caption under the hero subhead, over the photo. */
-.hero-image .hero-caption {
+/* Dark navy title band immediately below the photo (mirrors DOJ layout) */
+.hero-title-band {
+  background: var(--color-primary-darker);
+  color: white;
+  padding: var(--spacing-8) 0 var(--spacing-6);
+}
+.hero-title-band__h {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 2.375rem;
+  line-height: 1.15;
+  color: white;
+  margin: 0 0 var(--spacing-5);
+  letter-spacing: -0.005em;
+  max-width: 900px;
+}
+.hero-title-band__seals {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding-left: var(--spacing-4);
+  border-left: 3px solid var(--color-warning);
+}
+.hero-title-band__seal {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.hero-title-band__seal-badge {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: white;
+  color: var(--color-primary-darker);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+.hero-title-band__sub {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+  max-width: 640px;
+}
+.hero-title-band__caption {
+  margin: var(--spacing-6) 0 0;
+  padding-top: var(--spacing-4);
+  border-top: 1px solid rgba(255,255,255,0.12);
   font-size: 0.8125rem;
   line-height: 1.55;
-  color: rgba(255,255,255,0.78);
+  color: rgba(255,255,255,0.65);
   max-width: 640px;
-  margin: 0;
-  letter-spacing: 0.005em;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
 }
-.hero-image .hero-caption a {
+.hero-title-band__caption a {
   color: rgba(255,255,255,0.9);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.hero-image .hero-caption a:hover { color: white; }
+.hero-title-band__caption a:hover { color: var(--color-warning); }
 
 /* Lede + stats when placed inside the white "Arithmetic" section — dark on light. */
 .lede-light {
@@ -725,20 +738,13 @@ section.section-dark h2, section.section-dark h3 { color: white; }
   h1 { font-size: 1.875rem; }
   .hero h1 { font-size: 2rem; }
   .hero { padding: var(--spacing-10) 0; }
-  .hero-image { min-height: 560px; padding: 0; background: var(--color-primary-darker); }
-  .hero-image .hero-title { font-size: 1.625rem; line-height: 1.1; letter-spacing: -0.015em; }
-  /* Let the two title fragments flow inline on mobile so the browser can wrap naturally */
-  .hero-image .hero-title .hero-line { display: inline; }
-  .hero-image .hero-sub { font-size: 1rem; margin-bottom: var(--spacing-3); }
-  .hero-image .hero-caption { font-size: 0.75rem; }
-  .hero-image .hero-content { padding: 0 0 var(--spacing-5); }
-  /* Show the full photo on mobile so neither man is cut off. `contain` letterboxes into the navy backdrop, keeping the composition intact. */
-  .hero-image .hero-bg { background-size: contain; background-position: center top; }
-  .hero-image .hero-scrim {
-    background:
-      linear-gradient(180deg, rgba(22,46,81,0) 0%, rgba(22,46,81,0) 45%, rgba(22,46,81,0.7) 78%, rgba(22,46,81,0.95) 100%),
-      linear-gradient(90deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 60%);
-  }
+  /* Hero photo mobile: taller aspect so full photo reads clearly */
+  .hero-photo__img { height: 85vw; background-size: cover; background-position: center 42%; }
+  .hero-title-band { padding: var(--spacing-6) 0 var(--spacing-5); }
+  .hero-title-band__h { font-size: 1.75rem; line-height: 1.15; }
+  .hero-title-band__seals { gap: var(--spacing-3); padding-left: var(--spacing-3); }
+  .hero-title-band__sub { font-size: 0.875rem; }
+  .hero-title-band__caption { font-size: 0.75rem; }
   .hero-below { padding: var(--spacing-8) 0 var(--spacing-10); }
   .hero-below .lede { font-size: 1.0625rem; }
   .hero-below .meta { gap: var(--spacing-4) var(--spacing-6); }
@@ -756,6 +762,46 @@ section.section-dark h2, section.section-dark h3 { color: white; }
    INTERACTIVE MAP (Nationwide Fact-Checks)
    ============================================================= */
 .section-map { background: white; padding: var(--spacing-12) 0; }
+
+/* Giant stacked serif headline for the map section (mirrors DOJ layout) */
+.section-map__title {
+  text-align: center;
+  margin-bottom: var(--spacing-8);
+}
+.section-map__h {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 4.75rem;
+  line-height: 1.02;
+  color: var(--color-primary-darker);
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--spacing-3);
+  padding: 0;
+  border: none;
+}
+.section-map__h span { display: inline; }
+.section-map__sub {
+  font-family: var(--font-sans);
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+}
+.section-map__intro {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-6);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+@media (max-width: 768px) {
+  .section-map__h { font-size: 3rem; }
+  /* Stack the two words vertically like DOJ mobile */
+  .section-map__h span { display: block; }
+  .section-map__sub { font-size: 1.125rem; }
+  .section-map__intro { font-size: 0.9375rem; text-align: left; }
+}
 
 .rei-map {
   display: grid;

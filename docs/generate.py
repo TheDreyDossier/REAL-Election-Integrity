@@ -202,7 +202,7 @@ def head(title, description, canonical="/"):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=map-v2">
+<link rel="stylesheet" href="/css/style.css?v=doj-layout-v3">
 <title>{title}</title>
 </head>
 <body>
@@ -398,13 +398,19 @@ def render_home():
     )
     html += HEADER
     html += f'''
-<section class="hero hero-image">
-  <div class="hero-bg" role="presentation" aria-hidden="true"></div>
-  <div class="hero-scrim" aria-hidden="true"></div>
-  <div class="container hero-content">
-    <h1 class="hero-title"><span class="hero-line">REAL Enforcement Actions to</span> <span class="hero-line">Safeguard Election Integrity</span></h1>
-    <p class="hero-sub">from the DOJ&rsquo;s lies</p>
-    <p class="hero-caption">The photo Trump hung <a href="https://www.theguardian.com/us-news/2026/jan/29/trump-putin-white-house-photo">in the White House</a> above his granddaughter&rsquo;s.</p>
+<section class="hero-photo" aria-label="Trump-Putin handshake, Anchorage, Alaska">
+  <div class="hero-photo__img" role="img" aria-label="President Trump shakes hands with Vladimir Putin at the August 2025 Anchorage summit"></div>
+</section>
+
+<section class="hero-title-band">
+  <div class="container">
+    <h1 class="hero-title-band__h">REAL Enforcement Actions to Safeguard Election Integrity</h1>
+    <div class="hero-title-band__seals">
+      <img src="/assets/logo.svg" alt="The Drey Dossier seal" class="hero-title-band__seal">
+      <div class="hero-title-band__seal-badge" aria-hidden="true"><span>REI</span></div>
+      <p class="hero-title-band__sub">A line-by-line fact-check of the U.S. Department of Justice&rsquo;s &ldquo;Election Integrity&rdquo; dashboard, produced by The Drey Dossier.</p>
+    </div>
+    <p class="hero-title-band__caption">Photo: The one Trump hung <a href="https://www.theguardian.com/us-news/2026/jan/29/trump-putin-white-house-photo">in the White House</a> above his granddaughter&rsquo;s.</p>
   </div>
 </section>
 
@@ -519,11 +525,11 @@ def render_home():
 
 <section id="map" class="section-map">
   <div class="container">
-    <div class="section-header">
-      <div class="kicker">Nationwide Fact-Checks</div>
-      <h2>Explore activity by state</h2>
+    <div class="section-map__title">
+      <h2 class="section-map__h"><span>Nationwide</span> <span>Fact-Checks</span></h2>
+      <p class="section-map__sub">Explore activity by state</p>
     </div>
-    <p style="max-width:800px;margin-bottom:var(--spacing-6);">Hover a state for its fact-check summary. Click to see every DOJ claim about that state, verified against primary sources. States are colored by the share of claims that reduce to one of the four structural templates.</p>
+    <p class="section-map__intro">Hover a state for its fact-check summary. Click to see every DOJ claim about that state, verified against primary sources. States are colored by the share of claims that reduce to one of the four structural templates.</p>
     <div class="rei-map" data-map>
       <div>
         <div class="rei-map__frame" data-map-frame>
