@@ -846,9 +846,9 @@ section.section-dark h2, section.section-dark h3 { color: white; }
   transition: fill 0.12s ease, filter 0.12s ease;
   outline: none;
 }
-.rei-map__state--low { fill: #1a4480; }         /* mostly real — navy */
-.rei-map__state--mid { fill: #c48a30; }         /* mid-range — gold-brown */
-.rei-map__state--high { fill: #8b0a03; }        /* mostly templated — deep red */
+.rei-map__state--low,
+.rei-map__state--mid,
+.rei-map__state--high { fill: #1a4480; }        /* uniform navy — DOJ look */
 .rei-map__state:hover,
 .rei-map__state:focus {
   fill: var(--color-warning);
@@ -1020,9 +1020,9 @@ section.section-dark h2, section.section-dark h3 { color: white; }
   border-color: var(--color-warning-dark);
   outline: none;
 }
-.rei-map__inset--low { border-color: #1a4480; }
-.rei-map__inset--mid { border-color: #c48a30; }
-.rei-map__inset--high { border-color: #8b0a03; }
+.rei-map__inset--low,
+.rei-map__inset--mid,
+.rei-map__inset--high { border-color: #1a4480; }
 .rei-map__inset-abbr {
   font-family: var(--font-mono, monospace);
   font-weight: 700;
@@ -1031,16 +1031,28 @@ section.section-dark h2, section.section-dark h3 { color: white; }
   border-radius: 2px;
   color: white;
 }
-.rei-map__inset--low .rei-map__inset-abbr { background: #1a4480; }
-.rei-map__inset--mid .rei-map__inset-abbr { background: #c48a30; }
-.rei-map__inset--high .rei-map__inset-abbr { background: #8b0a03; }
+.rei-map__inset--low .rei-map__inset-abbr,
+.rei-map__inset--mid .rei-map__inset-abbr,
+.rei-map__inset--high .rei-map__inset-abbr { background: #1a4480; }
 .rei-map__inset-name { font-weight: 500; }
 
 /* Mobile: stack the map + panel; the map still works via tap */
 @media (max-width: 900px) {
   .rei-map {
     grid-template-columns: 1fr;
+    padding: var(--spacing-2);
+    gap: var(--spacing-4);
   }
-  .rei-map__frame { min-height: 240px; }
+  .rei-map__frame {
+    min-height: 0;
+    padding: var(--spacing-1);
+  }
+  .rei-map__svg { width: 100%; height: auto; }
   .rei-map__panel { min-height: 0; }
+}
+@media (max-width: 640px) {
+  #map { padding-left: 0; padding-right: 0; }
+  #map > .container { max-width: 100%; padding-left: var(--spacing-3); padding-right: var(--spacing-3); }
+  .rei-map { padding: var(--spacing-1); border-radius: 3px; }
+  .rei-map__frame { padding: 4px; }
 }

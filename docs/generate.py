@@ -202,7 +202,7 @@ def head(title, description, canonical="/"):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=doj-layout-v3">
+<link rel="stylesheet" href="/css/style.css?v=doj-navy-v4">
 <title>{title}</title>
 </head>
 <body>
@@ -429,7 +429,7 @@ def render_home():
       <h2 class="section-map__h"><span>Nationwide</span> <span>Fact-Checks</span></h2>
       <p class="section-map__sub">Explore activity by state</p>
     </div>
-    <p class="section-map__intro">Hover a state for its fact-check summary. Click to see every DOJ claim about that state, verified against primary sources. States are colored by the share of claims that reduce to one of the four structural templates.</p>
+    <p class="section-map__intro">Hover a state for its fact-check summary. Click to see every DOJ claim about that state, verified against primary sources.</p>
     <div class="rei-map" data-map>
       <div>
         <div class="rei-map__frame" data-map-frame>
@@ -444,13 +444,6 @@ def render_home():
       <aside class="rei-map__panel" data-map-panel aria-live="polite">
         <div class="rei-map__panel-empty" data-map-empty>
           <div class="rei-map__panel-hint">Hover over a state to view its fact-check.<br>Click a state to open its full page.</div>
-          <div class="rei-map__legend">
-            <div class="rei-map__legend-title">Templated share</div>
-            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--low"></span>0&ndash;33% templated</div>
-            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--mid"></span>34&ndash;66% templated</div>
-            <div class="rei-map__legend-row"><span class="rei-swatch rei-swatch--high"></span>67&ndash;100% templated</div>
-            <div class="rei-map__legend-note">&ldquo;Templated&rdquo; = matches one of the four DOJ boilerplate items catalogued in <a href="/#reduction">the 243&nbsp;&rarr;&nbsp;4 reduction</a>.</div>
-          </div>
         </div>
         <div class="rei-map__panel-state" data-map-state hidden>
           <div class="rei-map__panel-header">
