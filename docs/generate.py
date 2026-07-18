@@ -202,7 +202,7 @@ def head(title, description, canonical="/"):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=hero-zoom-v6">
+<link rel="stylesheet" href="/css/style.css?v=hero-edge-v7">
 <title>{title}</title>
 </head>
 <body>
@@ -410,7 +410,6 @@ def render_home():
       <div class="hero-title-band__seal-badge" aria-hidden="true"><span>REI</span></div>
       <p class="hero-title-band__sub">A line-by-line fact-check of the U.S. Department of Justice&rsquo;s &ldquo;Election Integrity&rdquo; dashboard, produced by The Drey Dossier.</p>
     </div>
-    <p class="hero-title-band__caption">Photo: The one Trump hung <a href="https://www.theguardian.com/us-news/2026/jan/29/trump-putin-white-house-photo">in the White House</a> above his granddaughter&rsquo;s.</p>
   </div>
 </section>
 
