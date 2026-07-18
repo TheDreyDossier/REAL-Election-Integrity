@@ -202,7 +202,7 @@ def head(title, description, canonical="/"):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=doj-navy-v4">
+<link rel="stylesheet" href="/css/style.css?v=doj-navy-v5">
 <title>{title}</title>
 </head>
 <body>
@@ -429,7 +429,11 @@ def render_home():
       <h2 class="section-map__h"><span>Nationwide</span> <span>Fact-Checks</span></h2>
       <p class="section-map__sub">Explore activity by state</p>
     </div>
-    <p class="section-map__intro">Hover a state for its fact-check summary. Click to see every DOJ claim about that state, verified against primary sources.</p>
+    <div class="section-map__explainer">
+      <p><strong>What the DOJ map shows:</strong> a nationwide grid of “actions” the Civil Rights Division says it has taken to protect election integrity in every state.</p>
+      <p><strong>What this map does:</strong> the same 50 states, but each one links to a line-by-line fact-check of the DOJ’s own claims against primary sources — court dockets, state election-office records, and the DOJ’s own past press releases.</p>
+      <p class="section-map__intro-cta">Hover a state for a summary. Click to open its full fact-check.</p>
+    </div>
     <div class="rei-map" data-map>
       <div>
         <div class="rei-map__frame" data-map-frame>

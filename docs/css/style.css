@@ -216,10 +216,10 @@ p { margin-bottom: var(--spacing-4); }
 }
 .hero-photo__img {
   width: 100%;
-  height: min(56vw, 640px);
+  height: min(38vw, 460px);
   background-image: url('/assets/img/trump-putin-alaska.jpg');
   background-size: cover;
-  background-position: center 40%;
+  background-position: center 35%;
   background-repeat: no-repeat;
 }
 
@@ -794,6 +794,41 @@ section.section-dark h2, section.section-dark h3 { color: white; }
   text-align: center;
   color: var(--color-text-muted);
   font-size: 1rem;
+}
+.section-map__explainer {
+  max-width: 780px;
+  margin: 0 auto var(--spacing-6);
+  padding: var(--spacing-4) var(--spacing-5);
+  border-left: 3px solid var(--color-primary-darker);
+  background: #f7f8fa;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #374151;
+  border-radius: 0 3px 3px 0;
+}
+.section-map__explainer p {
+  margin: 0 0 var(--spacing-2);
+}
+.section-map__explainer p:last-child {
+  margin-bottom: 0;
+}
+.section-map__explainer strong {
+  color: var(--color-primary-darker);
+  font-weight: 700;
+}
+.section-map__intro-cta {
+  margin-top: var(--spacing-3) !important;
+  padding-top: var(--spacing-3);
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-style: italic;
+}
+@media (max-width: 640px) {
+  .section-map__explainer {
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: 0.875rem;
+  }
 }
 @media (max-width: 768px) {
   .section-map__h { font-size: 3rem; }
