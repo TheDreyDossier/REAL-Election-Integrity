@@ -250,17 +250,21 @@ def render_home():
     )
     html += HEADER
     html += f'''
-<section class="hero">
-  <div class="container">
+<section class="hero hero-image">
+  <div class="hero-bg" role="presentation" aria-hidden="true"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="container hero-content">
     <div class="kicker">Launched 3:01 PM PDT · July 16, 2026 · Fact-checked 4:00 PM PDT</div>
-    <h1>The DOJ says it has taken 243 election-integrity enforcement actions.<br>Read them carefully.</h1>
-    <p class="lede">Fifty-one of those actions are dated <strong>September 18, 2026</strong> — a date that is nine weeks in the future. This is not a typo. It is the structural design of the dashboard.</p>
+    <h1 class="hero-title">REAL Enforcement Actions to<br>Safeguard Election Integrity</h1>
+    <p class="hero-sub">from the DOJ&rsquo;s lies</p>
+    <p class="lede">The U.S. Department of Justice launched a public &ldquo;Election Integrity&rdquo; dashboard claiming <strong>243 enforcement actions</strong>. Fifty-one are dated <strong>September 18, 2026</strong> — nine weeks in the future. This site is a line-by-line fact-check.</p>
     <div class="meta">
       <span><strong>{TOTAL_ACTIONS}</strong> total &ldquo;verified enforcement actions&rdquo;</span>
       <span><strong>{TEMPLATED_TOTAL} of {TOTAL_ACTIONS}</strong> are duplicates of {UNDERLYING_REAL} templates</span>
       <span><strong>{FUTURE_COUNT}</strong> dated in the future as of launch</span>
       <span><strong>13.2%</strong> have any source link on the DOJ site</span>
     </div>
+    <p class="hero-caption">Source image: <a href="https://civilrights.justice.gov/electionintegrity">civilrights.justice.gov/electionintegrity</a> · U.S. government work, no copyright.</p>
   </div>
 </section>
 
