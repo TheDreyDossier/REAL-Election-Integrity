@@ -204,55 +204,67 @@ p { margin-bottom: var(--spacing-4); }
 }
 .hero .meta strong { color: white; font-weight: 700; }
 
-/* Hero with photo background - mirrors DOJ site composition */
-/* Hero photo — clean, full-bleed, NO text overlay (mirrors DOJ layout) */
-.hero-photo {
+/* DOJ-style hero: photo with gradient overlay and floating title text at bottom-left */
+.hero-section {
+  position: relative;
   width: 100%;
+  height: min(56vw, 720px);
+  min-height: 460px;
   overflow: hidden;
   background: var(--color-primary-darker);
-  line-height: 0;
-  padding: 0 !important;
-  margin: 0;
 }
-.hero-photo__img {
-  width: 100%;
-  height: min(42vw, 560px);
+.hero-section__img {
+  position: absolute;
+  inset: 0;
   background-image: url('/assets/img/trump-putin-alaska.jpg');
   background-size: cover;
   background-position: center 30%;
   background-repeat: no-repeat;
-  background-color: var(--color-primary-darker);
 }
-
-/* Dark navy title band immediately below the photo (mirrors DOJ layout) */
-.hero-title-band {
-  background: var(--color-primary-darker);
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(10, 22, 51, 0.88) 0%,
+    rgba(10, 22, 51, 0.55) 32%,
+    rgba(10, 22, 51, 0.18) 55%,
+    rgba(10, 22, 51, 0) 75%);
+  pointer-events: none;
+}
+.hero-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--spacing-8) var(--spacing-10);
   color: white;
-  padding: var(--spacing-8) 0 var(--spacing-6);
+  max-width: 1200px;
+  margin: 0 auto;
 }
-.hero-title-band__h {
+.hero-text__h {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 2.375rem;
-  line-height: 1.15;
+  font-size: 3rem;
+  line-height: 1.1;
   color: white;
   margin: 0 0 var(--spacing-5);
-  letter-spacing: -0.005em;
-  max-width: 900px;
+  letter-spacing: -0.01em;
+  max-width: 950px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
-.hero-title-band__seals {
+.hero-text__seals {
   display: flex;
   align-items: center;
   gap: var(--spacing-4);
   padding-left: var(--spacing-4);
   border-left: 3px solid var(--color-warning);
 }
-.hero-title-band__seal {
+.hero-text__seal {
   width: 44px;
   height: 44px;
   flex-shrink: 0;
 }
-.hero-title-band__seal-badge {
+.hero-text__seal-badge {
   width: 44px;
   height: 44px;
   flex-shrink: 0;
@@ -267,29 +279,15 @@ p { margin-bottom: var(--spacing-4); }
   font-size: 0.75rem;
   letter-spacing: 0.02em;
 }
-.hero-title-band__sub {
+.hero-text__sub {
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   line-height: 1.55;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.95);
   margin: 0;
-  max-width: 640px;
+  max-width: 700px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
-.hero-title-band__caption {
-  margin: var(--spacing-6) 0 0;
-  padding-top: var(--spacing-4);
-  border-top: 1px solid rgba(255,255,255,0.12);
-  font-size: 0.8125rem;
-  line-height: 1.55;
-  color: rgba(255,255,255,0.65);
-  max-width: 640px;
-}
-.hero-title-band__caption a {
-  color: rgba(255,255,255,0.9);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.hero-title-band__caption a:hover { color: var(--color-warning); }
 
 /* Lede + stats when placed inside the white "Arithmetic" section — dark on light. */
 .lede-light {
@@ -740,12 +738,13 @@ section.section-dark h2, section.section-dark h3 { color: white; }
   .hero h1 { font-size: 2rem; }
   .hero { padding: var(--spacing-10) 0; }
   /* Hero photo mobile: taller aspect so full photo reads clearly */
-  .hero-photo__img { height: 90vw; background-size: cover; background-position: center 35%; }
-  .hero-title-band { padding: var(--spacing-6) 0 var(--spacing-5); }
-  .hero-title-band__h { font-size: 1.75rem; line-height: 1.15; }
-  .hero-title-band__seals { gap: var(--spacing-3); padding-left: var(--spacing-3); }
-  .hero-title-band__sub { font-size: 0.875rem; }
-  .hero-title-band__caption { font-size: 0.75rem; }
+  .hero-section { height: 130vw; min-height: 480px; }
+  .hero-section__img { background-position: center 35%; }
+  .hero-overlay { background: linear-gradient(to top, rgba(10,22,51,0.92) 0%, rgba(10,22,51,0.65) 38%, rgba(10,22,51,0.25) 60%, rgba(10,22,51,0) 80%); }
+  .hero-text { padding: var(--spacing-6) var(--spacing-5); }
+  .hero-text__h { font-size: 1.75rem; line-height: 1.15; }
+  .hero-text__seals { gap: var(--spacing-3); padding-left: var(--spacing-3); flex-wrap: wrap; }
+  .hero-text__sub { font-size: 0.875rem; }
   .hero-below { padding: var(--spacing-8) 0 var(--spacing-10); }
   .hero-below .lede { font-size: 1.0625rem; }
   .hero-below .meta { gap: var(--spacing-4) var(--spacing-6); }

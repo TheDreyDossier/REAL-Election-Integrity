@@ -202,7 +202,7 @@ def head(title, description, canonical="/"):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=hero-edge-v7">
+<link rel="stylesheet" href="/css/style.css?v=hero-float-v8">
 <title>{title}</title>
 </head>
 <body>
@@ -398,17 +398,15 @@ def render_home():
     )
     html += HEADER
     html += f'''
-<section class="hero-photo" aria-label="Trump-Putin handshake, Anchorage, Alaska">
-  <div class="hero-photo__img" role="img" aria-label="President Trump shakes hands with Vladimir Putin at the August 2025 Anchorage summit"></div>
-</section>
-
-<section class="hero-title-band">
-  <div class="container">
-    <h1 class="hero-title-band__h">REAL Enforcement Actions to Safeguard Election Integrity</h1>
-    <div class="hero-title-band__seals">
-      <img src="/assets/logo.svg" alt="The Drey Dossier seal" class="hero-title-band__seal">
-      <div class="hero-title-band__seal-badge" aria-hidden="true"><span>REI</span></div>
-      <p class="hero-title-band__sub">A line-by-line fact-check of the U.S. Department of Justice&rsquo;s &ldquo;Election Integrity&rdquo; dashboard, produced by The Drey Dossier.</p>
+<section class="hero-section" aria-label="Trump-Putin handshake, Anchorage, Alaska">
+  <div class="hero-section__img" role="img" aria-label="President Trump shakes hands with Vladimir Putin at the August 2025 Anchorage summit"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-text">
+    <h1 class="hero-text__h">REAL Enforcement Actions to Safeguard Election Integrity</h1>
+    <div class="hero-text__seals">
+      <img src="/assets/logo.svg" alt="The Drey Dossier seal" class="hero-text__seal">
+      <div class="hero-text__seal-badge" aria-hidden="true"><span>REI</span></div>
+      <p class="hero-text__sub">A line-by-line fact-check of the U.S. Department of Justice&rsquo;s &ldquo;Election Integrity&rdquo; dashboard, produced by The Drey Dossier.</p>
     </div>
   </div>
 </section>
