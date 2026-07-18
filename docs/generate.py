@@ -166,7 +166,7 @@ def head(title, description, canonical="/"):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=hero-layout-3">
+<link rel="stylesheet" href="/css/style.css?v=hero-layout-5">
 <title>{title}</title>
 </head>
 <body>
@@ -254,9 +254,9 @@ def render_home():
   <div class="hero-bg" role="presentation" aria-hidden="true"></div>
   <div class="hero-scrim" aria-hidden="true"></div>
   <div class="container hero-content">
-    <h1 class="hero-title">REAL Enforcement Actions to<br>Safeguard Election Integrity</h1>
+    <h1 class="hero-title"><span class="hero-line">REAL Enforcement Actions to</span> <span class="hero-line">Safeguard Election Integrity</span></h1>
     <p class="hero-sub">from the DOJ&rsquo;s lies</p>
-    <p class="hero-caption">Trump &amp; Putin, Joint Base Elmendorf-Richardson, Anchorage, Alaska, <a href="https://www.theguardian.com/us-news/2026/jan/29/trump-putin-white-house-photo">August 15, 2025</a>. Trump kept this photo framed in the Palm Room of the White House. When critics objected, he removed the photo of his granddaughter beneath it — not the photo of Putin.</p>
+    <p class="hero-caption">Trump &amp; Putin, Anchorage, Alaska, <a href="https://www.theguardian.com/us-news/2026/jan/29/trump-putin-white-house-photo">August 15, 2025</a>.</p>
   </div>
 </section>
 
@@ -277,6 +277,8 @@ def render_home():
     </div>
 
     <p class="lede-light">The U.S. Department of Justice launched a public &ldquo;Election Integrity&rdquo; dashboard claiming <strong>243 enforcement actions</strong>. Fifty-one are dated <strong>September 18, 2026</strong> — nine weeks in the future. This site is a line-by-line fact-check.</p>
+
+    <p class="palm-note">The photo above hangs framed in the Palm Room of the White House. When critics objected, Trump removed the photo of his six-year-old granddaughter beneath it — <a href="https://people.com/trump-keeps-putin-photo-white-house-wall-removes-granddaughter-11946713">not</a> the photo of Putin.</p>
 
     <div class="meta-light">
       <span><strong>{TOTAL_ACTIONS}</strong> total &ldquo;verified enforcement actions&rdquo;</span>

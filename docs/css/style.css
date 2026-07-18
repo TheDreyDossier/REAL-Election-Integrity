@@ -248,6 +248,7 @@ p { margin-bottom: var(--spacing-4); }
   text-shadow: 0 2px 12px rgba(0,0,0,0.65);
   letter-spacing: -0.01em;
 }
+.hero-image .hero-title .hero-line { display: block; }
 .hero-image .hero-sub {
   font-family: var(--font-serif);
   font-style: italic;
@@ -285,6 +286,23 @@ p { margin-bottom: var(--spacing-4); }
   margin: var(--spacing-6) 0 var(--spacing-6) 0;
 }
 .lede-light strong { color: var(--color-primary); }
+.palm-note {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  max-width: 780px;
+  margin: 0 0 var(--spacing-8) 0;
+  padding-left: var(--spacing-5);
+  border-left: 3px solid var(--color-warning);
+}
+.palm-note a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 700;
+}
 .meta-light {
   display: flex;
   flex-wrap: wrap;
@@ -707,11 +725,15 @@ section.section-dark h2, section.section-dark h3 { color: white; }
   h1 { font-size: 1.875rem; }
   .hero h1 { font-size: 2rem; }
   .hero { padding: var(--spacing-10) 0; }
-  .hero-image { min-height: 460px; padding: 0; }
-  .hero-image .hero-title { font-size: 2.15rem; }
-  .hero-image .hero-sub { font-size: 1.15rem; }
-  .hero-image .hero-content { padding: 0 0 var(--spacing-6); }
-  .hero-image .hero-bg { background-position: center 28%; }
+  .hero-image { min-height: 540px; padding: 0; }
+  .hero-image .hero-title { font-size: 1.625rem; line-height: 1.1; letter-spacing: -0.015em; }
+  /* Let the two title fragments flow inline on mobile so the browser can wrap naturally */
+  .hero-image .hero-title .hero-line { display: inline; }
+  .hero-image .hero-sub { font-size: 1rem; margin-bottom: var(--spacing-3); }
+  .hero-image .hero-caption { font-size: 0.75rem; }
+  .hero-image .hero-content { padding: 0 0 var(--spacing-5); }
+  /* Center-frame photo on mobile so both faces remain visible */
+  .hero-image .hero-bg { background-position: 40% 32%; }
   .hero-image .hero-scrim {
     background:
       linear-gradient(180deg, rgba(22,46,81,0) 0%, rgba(22,46,81,0) 45%, rgba(22,46,81,0.7) 78%, rgba(22,46,81,0.95) 100%),
