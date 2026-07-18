@@ -216,11 +216,12 @@ p { margin-bottom: var(--spacing-4); }
 }
 .hero-photo__img {
   width: 100%;
-  height: min(38vw, 460px);
+  height: min(66.67vw, 620px); /* 3:2 image aspect ratio */
   background-image: url('/assets/img/trump-putin-alaska.jpg');
-  background-size: cover;
-  background-position: center 35%;
+  background-size: contain;
+  background-position: center center;
   background-repeat: no-repeat;
+  background-color: var(--color-primary-darker);
 }
 
 /* Dark navy title band immediately below the photo (mirrors DOJ layout) */

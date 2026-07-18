@@ -202,7 +202,7 @@ def head(title, description, canonical="/"):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Public+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="stylesheet" href="/css/style.css?v=doj-navy-v5">
+<link rel="stylesheet" href="/css/style.css?v=hero-zoom-v6">
 <title>{title}</title>
 </head>
 <body>
