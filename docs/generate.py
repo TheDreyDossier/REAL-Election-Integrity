@@ -221,6 +221,7 @@ HEADER = '''<header class="site-header">
       <a href="/">Home</a>
       <a href="/about.html">About</a>
       <a href="/method.html">Method</a>
+      <a href="/russia-primary-sources.html">Russia 2016</a>
       <a href="/#map">Map</a>
       <a href="/#states">States</a>
       <a href="/report-an-error.html">Report an Error</a>
@@ -357,6 +358,7 @@ FOOTER = '''<footer class="site-footer">
       <h4>Analysis</h4>
       <a href="/#reduction">The 243 &rarr; 4 reduction</a>
       <a href="/about.html">The structural exposé</a>
+      <a href="/russia-primary-sources.html">Russia 2016 — Trump's conduct</a>
       <a href="/method.html">Method &amp; confidence labels</a>
     </div>
     <div class="link-column">
