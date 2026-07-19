@@ -230,7 +230,7 @@ HEADER = '''<header class="site-header">
 
 <div class="tagline-banner">
   <div class="container">
-    Get involved and learn more about the division's <a href="https://civilrights.justice.gov/electionintegrity" rel="external nofollow">election-integrity enforcement actions.</a>
+    Get involved and learn more about the division's <a href="#map">election-integrity enforcement actions.</a>
   </div>
 </div>
 '''
