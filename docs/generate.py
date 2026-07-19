@@ -473,8 +473,6 @@ def render_home():
 
     <p class="lede-light">The U.S. Department of Justice launched a public &ldquo;Election Integrity&rdquo; dashboard claiming <strong>243 enforcement actions</strong>. Fifty-one are dated <strong>September 18, 2026</strong> — nine weeks in the future. This site is a line-by-line fact-check.</p>
 
-    <p class="palm-note">The photo above hangs framed in the Palm Room of the White House. When critics objected, Trump removed the photo of his six-year-old granddaughter beneath it — <a href="https://people.com/trump-keeps-putin-photo-white-house-wall-removes-granddaughter-11946713">not</a> the photo of Putin.</p>
-
     <div class="meta-light">
       <span><strong>{TOTAL_ACTIONS}</strong> total &ldquo;verified enforcement actions&rdquo;</span>
       <span><strong>{TEMPLATED_TOTAL} of {TOTAL_ACTIONS}</strong> are duplicates of {UNDERLYING_REAL} templates</span>
