@@ -738,8 +738,9 @@ section.section-dark h2, section.section-dark h3 { color: white; }
   .hero h1 { font-size: 2rem; }
   .hero { padding: var(--spacing-10) 0; }
   /* Hero photo mobile: taller aspect so full photo reads clearly */
-  .hero-section { height: 130vw; min-height: 480px; }
-  .hero-section__img { background-position: center 35%; }
+  .hero-section { height: 130vw; min-height: 480px; max-height: 720px; }
+  /* On mobile, shift the crop so both Putin and Trump are visible instead of centering on empty sky */
+  .hero-section__img { background-position: 35% 35%; background-size: cover; }
   .hero-overlay { background: linear-gradient(to top, rgba(10,22,51,0.92) 0%, rgba(10,22,51,0.65) 38%, rgba(10,22,51,0.25) 60%, rgba(10,22,51,0) 80%); }
   .hero-text { padding: var(--spacing-6) var(--spacing-5); }
   .hero-text__h { font-size: 1.75rem; line-height: 1.15; }
@@ -755,7 +756,16 @@ section.section-dark h2, section.section-dark h3 { color: white; }
   .site-footer .container { grid-template-columns: 1fr; }
   .big-stat .number { font-size: 2.25rem; }
   .reduction-table th, .reduction-table td { padding: var(--spacing-3); font-size: 0.875rem; }
-  .site-nav { width: 100%; justify-content: flex-start; margin-left: 0; }
+  /* Mobile nav: wrap onto two lines with tighter spacing so items don't overflow off-screen */
+  .site-nav {
+    width: 100%;
+    justify-content: flex-start;
+    margin-left: 0;
+    flex-wrap: wrap;
+    gap: var(--spacing-3) var(--spacing-4);
+    row-gap: var(--spacing-3);
+  }
+  .site-nav a { font-size: 0.875rem; }
 }
 
 /* =============================================================
